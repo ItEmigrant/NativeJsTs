@@ -103,5 +103,5 @@ test("hello citizen should be correct", () => {
 
     expect(createMessage(city)).toBe("Hello New York brothers!");
 
-});
+})
 
