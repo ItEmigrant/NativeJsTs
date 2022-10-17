@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {addSkill, createMessage} from "./function/function";
+import {createMessage} from "./function/function";
 
 let a = createMessage;
 const root = ReactDOM.createRoot(
