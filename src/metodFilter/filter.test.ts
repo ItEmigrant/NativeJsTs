@@ -27,3 +27,20 @@ test("should take old chip courses 160", () => {
     expect(chipCourse[1].title).toBe("REACT");
 
 })
+
+test("get only completed tasks", ()=> {
+    const tasks = [
+        {id:1, title: "bread", isDone:false},
+        {id:2, title: "milk", isDone:true},
+        {id:3, title: "apple", isDone:false},
+        {id:4, title: "water", isDone:true}
+    ]
+
+    const comletedTasks = tasks.filter(t=>t.isDone);
+
+    expect(comletedTasks.length).toBe(2);
+    expect(comletedTasks[0].title).toBe("milk");
+    expect(comletedTasks[1].id).toBe(4);
+
+
+})

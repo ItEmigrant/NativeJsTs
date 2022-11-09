@@ -1,3 +1,5 @@
+import {CityType, governmentBuildingsType} from "../object/objectStudyTests";
+
 const ages = [18, 20, 22, 1, 100, 90, 14];
 
 const predicate = (age: number) => {
@@ -23,3 +25,15 @@ const chipCourse = [
     {title: "CSS", price: 110},
     {title: "REACT", price: 150}
 ];
+
+export function  demolishHousesOnTheStreet(city: CityType, street: string) {
+   city.houses = city.houses.filter(h=>h.address.street.title !== street)
+
+}
+
+export function getBuildingsWithStaffCountGreaterThen(buildings: Array<governmentBuildingsType>, staff: number) {
+
+   return buildings.filter(b=> b.staffCount>staff);
+
+
+}

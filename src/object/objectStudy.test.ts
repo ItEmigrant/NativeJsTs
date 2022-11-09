@@ -1,4 +1,5 @@
 import {CityType} from "./objectStudyTests";
+import {demolishHousesOnTheStreet, getBuildingsWithStaffCountGreaterThen} from "../metodFilter/filter";
 
 let city: CityType;
 
@@ -8,7 +9,7 @@ beforeEach(() => {
         houses:
             [
                 {
-                    buildedAt: 2012,
+                    id:1, buildedAt: 2012,
                     repaired: false,
                     address: {
                         number: 100,
@@ -18,7 +19,7 @@ beforeEach(() => {
                     }
                 },
                 {
-                    buildedAt: 2008,
+                    id:2, buildedAt: 2008,
                     repaired: false,
                     address: {
                         number: 100,
@@ -28,7 +29,7 @@ beforeEach(() => {
                     }
                 },
                 {
-                    buildedAt: 2020,
+                    id:3, buildedAt: 2020,
                     repaired: false,
                     address: {
                         number: 101,
@@ -91,5 +92,21 @@ test("test city should contains hospital and fire station", () => {
     expect(city.governmentBuildings[1].budget).toBe(500000);
     expect(city.governmentBuildings[1].staffCount).toBe(1000);
     expect(city.governmentBuildings[1].address.street.title).toBe("South Str");
+})
+
+
+test('House should be destroyed', () => {
+    demolishHousesOnTheStreet(city, 'Happy street');
+
+    expect(city.houses.length).toBe(1);
+    expect(city.houses[0].id).toBe(1);
+
+})
+
+test('buildings with correct staff count', () => {
+    let buildings = getBuildingsWithStaffCountGreaterThen(city.governmentBuildings, 500)
+
+    expect(buildings.length).toBe(1);
+    expect(buildings[0].type).toBe('FIRE-STATION')
 })
 
