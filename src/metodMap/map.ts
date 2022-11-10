@@ -1,3 +1,5 @@
+import {governmentBuildingsType, housesType} from "../object/objectStudyTests";
+
 export type ManType = {
     name: string
     age: number
@@ -43,14 +45,31 @@ const devs2 = [
     Transformator(people[2]),
 ]
 
-const devs3 = people.map(Transformator)
+/*const devs3 = people.map(Transformator)
 
 const devs4 = people.map(man => ({
     stack: ['css, html', 'js', 'tdd', 'react'],
     firstName: man.name.split(' ')[0],
     lastName: man.name.split(' ')[1]
-}));
+}));*/
 
 
-const messages = people.map(man => `Hello developers! ${man.name.split(" ")[0]} `)
+/*const messages = people.map(man => `${man.name.split(" ")[0]}. Hello developers! `)*/
 
+export const createGreetingMessages = (people: Array<ManType>) => {
+    return people.map(man => `${man.name.split(" ")[0]}. Hello developers! `)
+}
+
+export const getStreetsTitlesOfGovernmentBuildings = (Buildings: Array<governmentBuildingsType>) => {
+    return Buildings.map(b => b.address.street.title)
+
+}
+
+export const getStreetsTitlesOfHouses = (houses: Array<housesType>) => {
+    return houses.map(h => h.address.street.title);
+
+}
+
+export const createGreetingMessages1 = (houses: Array<housesType>) => {
+    return houses.map(s => `hello citizens ${s.address.street.title}`)
+}

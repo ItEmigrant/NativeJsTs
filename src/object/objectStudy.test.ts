@@ -1,5 +1,10 @@
 import {CityType} from "./objectStudyTests";
 import {demolishHousesOnTheStreet, getBuildingsWithStaffCountGreaterThen} from "../metodFilter/filter";
+import {
+    createGreetingMessages1,
+    getStreetsTitlesOfGovernmentBuildings,
+    getStreetsTitlesOfHouses
+} from "../metodMap/map";
 
 let city: CityType;
 
@@ -9,7 +14,7 @@ beforeEach(() => {
         houses:
             [
                 {
-                    id:1, buildedAt: 2012,
+                    id: 1, buildedAt: 2012,
                     repaired: false,
                     address: {
                         number: 100,
@@ -19,7 +24,7 @@ beforeEach(() => {
                     }
                 },
                 {
-                    id:2, buildedAt: 2008,
+                    id: 2, buildedAt: 2008,
                     repaired: false,
                     address: {
                         number: 100,
@@ -29,7 +34,7 @@ beforeEach(() => {
                     }
                 },
                 {
-                    id:3, buildedAt: 2020,
+                    id: 3, buildedAt: 2020,
                     repaired: false,
                     address: {
                         number: 101,
@@ -38,16 +43,18 @@ beforeEach(() => {
                         }
                     }
                 },
-                ],
+            ],
 
         governmentBuildings: [
-            {type:"HOSPITAL", budget:200000, staffCount:200, address:{
-                street: {
-                    title: "Central Str"
-                }
+            {
+                type: "HOSPITAL", budget: 200000, staffCount: 200, address: {
+                    street: {
+                        title: "Central Str"
+                    }
                 }
             },
-            {type:"FIRE-STATION", budget:500000, staffCount:1000, address:{
+            {
+                type: "FIRE-STATION", budget: 500000, staffCount: 1000, address: {
                     street: {
                         title: "South Str"
                     }
@@ -110,3 +117,30 @@ test('buildings with correct staff count', () => {
     expect(buildings[0].type).toBe('FIRE-STATION')
 })
 
+test('list of streets titles of government buildings', () => {
+    let streetsNames = getStreetsTitlesOfGovernmentBuildings(city.governmentBuildings);
+
+    expect(streetsNames.length).toBe(2);
+    expect(streetsNames[0]).toBe("Central Str");
+    expect(streetsNames[1]).toBe("South Str");
+})
+
+test('list of streets titles', ()=> {
+
+    let streetsNames = getStreetsTitlesOfHouses(city.houses);
+
+    expect(streetsNames.length).toBe(3);
+    expect(streetsNames[0]).toBe("White street");
+    expect(streetsNames[1]).toBe("Happy street");
+    expect(streetsNames[2]).toBe("Happy street");
+})
+
+test("create greeting messages for streets", ()=>{
+    let messages = createGreetingMessages1(city.houses);
+    expect(messages.length).toBe(3);
+    expect(messages[0]).toBe('hello citizens White street');
+    expect(messages[1]).toBe('hello citizens Happy street');
+    expect(messages[2]).toBe('hello citizens Happy street');
+
+    }
+)
