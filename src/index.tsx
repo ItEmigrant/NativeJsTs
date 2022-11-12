@@ -1,17 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import {createMessage} from "./function/function";
 
-let a = createMessage;
+import reportWebVitals from './reportWebVitals';
+/*import {createMessage} from "./function/function";*/
+import {User} from "./callback/callback";
+
+/*let a = createMessage;*/
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <User />
   </React.StrictMode>
 );
 

@@ -71,5 +71,11 @@ export const getStreetsTitlesOfHouses = (houses: Array<housesType>) => {
 }
 
 export const createGreetingMessages1 = (houses: Array<housesType>) => {
-    return houses.map(s => `hello citizens ${s.address.street.title}`)
+    let callbackfn = (s: housesType) => {
+
+        return `hello citizens ${s.address.street.title}`
+    };
+
+    let newArray = houses.map(callbackfn)
+    return newArray;
 }
