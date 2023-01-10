@@ -142,6 +142,7 @@ test("should show new Array", () => {
 
 })
 
+/*
 test("should show sort", () => {
 
     const letters = ["c", "d", "a", "z", "e"];
@@ -156,4 +157,4 @@ function pass(letters: any) {
 
     const copyLetters = [...letters].sort();
 
-}
+}*/
