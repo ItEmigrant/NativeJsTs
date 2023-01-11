@@ -1,4 +1,4 @@
-import {makeHairStyle, moveUser, userType} from "./immutability";
+import {makeHairStyle, movedUser, userType, userWithLaptopType} from "./immutability";
 
 
 test("type test", () => {
@@ -6,7 +6,8 @@ test("type test", () => {
         name: "Bogdan",
         hair: 32,
         address: {
-            title: "Krakow"
+            city: "Krakow",
+            house: 12
         }
     };
 
@@ -19,19 +20,27 @@ test("type test", () => {
 })
 
 
-/*test("copy test", () => {
-    let user: userType = {
+test("change address", () => {
+    let user: userWithLaptopType = {
         name: "Bogdan",
         hair: 32,
         address: {
-            title: "Krakow"
+            city: "Krakow",
+            house: 12
+
+        },
+        laptop: {
+            title: "Huawei"
         }
     };
 
-    const cutUser = moveUser(user, "Kiev")
+    const cutUser = movedUser(user, "Kiev");
 
-    expect(user.hair).toBe(32);
-    expect(cutUser.hair).toBe(16);
-    expect(cutUser.address).toBe(user.address);
-})*/
+
+    expect(user).not.toBe(cutUser);
+    expect(user.address).not.toBe(cutUser.address);
+    expect(cutUser.address.city).toBe("Kiev");
+    expect(user.laptop).toBe(cutUser.laptop);
+
+})
 
