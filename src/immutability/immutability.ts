@@ -28,3 +28,10 @@ export const movedUser = (u: userWithLaptopType, city: string) => {
 
     };
 }
+
+export const  upgradeUserLaptop= (u: userWithLaptopType, laptop: string) => {
+
+    return {
+       ...u, laptop: {...u.laptop, title:laptop}
+    };
+}

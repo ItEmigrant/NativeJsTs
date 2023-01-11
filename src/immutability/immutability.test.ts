@@ -1,13 +1,15 @@
-import {makeHairStyle, movedUser, userType, userWithLaptopType} from "./immutability";
+import {makeHairStyle, movedUser, upgradeUserLaptop, userType, userWithLaptopType} from "./immutability";
 
 
 test("type test", () => {
     let user: userType = {
         name: "Bogdan",
         hair: 32,
-        address: {
-            city: "Krakow",
-            house: 12
+
+            address: {
+                city: "Krakow",
+                house: 12
+
         }
     };
 
@@ -36,7 +38,6 @@ test("change address", () => {
 
     const cutUser = movedUser(user, "Kiev");
 
-
     expect(user).not.toBe(cutUser);
     expect(user.address).not.toBe(cutUser.address);
     expect(cutUser.address.city).toBe("Kiev");
@@ -44,3 +45,27 @@ test("change address", () => {
 
 })
 
+test("upgrade laptop to macbook", () => {
+    let user: userWithLaptopType = {
+        name: "Bogdan",
+        hair: 32,
+        address: {
+            city: "Krakow",
+            house: 12
+
+        },
+        laptop: {
+            title: "Huawei"
+        }
+    };
+
+    const cutUser = upgradeUserLaptop(user, "macbook");
+
+    expect(user).not.toBe(cutUser);
+    expect(user.address).toBe(cutUser.address);
+    expect(user.laptop).not.toBe(cutUser.laptop);
+    expect(cutUser.laptop.title).toBe("macbook");
+    expect(user.laptop.title).toBe("Huawei");
+
+
+})
