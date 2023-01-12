@@ -1,4 +1,12 @@
-import {makeHairStyle, movedUser, upgradeUserLaptop, userType, userWithLaptopType} from "./immutability";
+import {
+    addUserBook,
+    makeHairStyle,
+    movedUser, movedUserHouse,
+    upgradeUserLaptop,
+    userType,
+    userWithBooksType,
+    userWithLaptopType
+} from "./immutability";
 
 
 test("type test", () => {
@@ -74,3 +82,66 @@ test("upgrade laptop to macbook", () => {
 
 
 })
+
+test("upgrade user house", () => {
+    let user: userWithLaptopType & userWithBooksType = {
+        name: "Bogdan",
+        hair: 32,
+        country: {
+            address: {
+                city: "Krakow",
+                house: 12
+            }
+
+        },
+        laptop: {
+            title: "Huawei"
+        },
+        books: ["Artur", "War", "H.Ford"]
+    };
+
+    const cutUser = movedUserHouse(user, 88);
+
+    expect(user).not.toBe(cutUser);
+    expect(user.country.address).not.toBe(cutUser.country.address);
+    expect(user.laptop).toBe(cutUser.laptop);
+    expect(cutUser.laptop.title).toBe("Huawei");
+    expect(user.country.address.house).toBe(12);
+    expect(cutUser.country.address.house).toBe(88);
+    expect(user.books).toBe(cutUser.books)
+
+
+})
+
+test("add book", () => {
+    let user: userWithLaptopType & userWithBooksType = {
+        name: "Bogdan",
+        hair: 32,
+        country: {
+            address: {
+                city: "Krakow",
+                house: 12
+            }
+
+        },
+        laptop: {
+            title: "Huawei"
+        },
+        books: ["Artur", "War", "H.Ford"]
+    };
+
+    const cutUser = addUserBook(user, ["Cars and sex", "JavaScript"]);
+
+    expect(user).not.toBe(cutUser);
+    expect(user.country.address).toBe(cutUser.country.address);
+    expect(user.laptop).toBe(cutUser.laptop);
+    expect(cutUser.laptop.title).toBe("Huawei");
+    expect(user.country.address.house).toBe(12);
+    expect(cutUser.country.address.house).toBe(12);
+    expect(user.books).not.toBe(cutUser.books)
+    expect(cutUser.books[3]).toBe('Cars and sex')
+    expect(cutUser.books[4]).toBe('JavaScript')
+
+
+})
+
