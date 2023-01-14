@@ -24,6 +24,13 @@ export type userWithBooksType = userType & {
     books: Array<string>
 }
 
+export type CompanyType = { id: number, title: string };
+export type CompaniesType = {
+    companies: Array<CompanyType >
+}
+
+
+
 export const makeHairStyle = (u: userType, power: number) => {
 
     //copy.hair = u.hair / power
@@ -62,4 +69,46 @@ export const addUserBook = (u: userWithLaptopType & userWithBooksType, book: str
         ...u, books: [...u.books, ...book, [u.books, book]]
 
     };
+}
+
+export const updateUserBook = (u: userWithLaptopType & userWithBooksType, book: string, newBook: string) => {
+
+    return {
+        ...u, books: [...u.books.map(e => e === book ? newBook : e)]
+
+    };
+}
+
+export const removeUserBook = (u: userWithLaptopType & userWithBooksType, book: string) => {
+
+    return {
+        ...u, books: [...u.books.filter(e => e !== book)]
+
+    };
+}
+
+export const addCompany = (u: userWithLaptopType & CompaniesType, newCompany: string) => {
+
+    return {
+        ...u, companies: [...u.companies, {id: 4, title: newCompany}]
+
+    };
+}
+
+export const updateCompany = (u: CompaniesType, id: number, newCompany: string) => {
+
+    return {
+        ...u, companies: u.companies.map(el => el.id === id ? {...el, title: newCompany} : el)
+
+    };
+
+}
+
+export const updateCompanyTitle = (companies:{[key:string]: Array<CompanyType>}, userName:string, id: number, newTitle: string) => {
+
+           let companyCopy = {...companies}
+               companyCopy[userName]= companyCopy[userName].map(c => c.id === id ? {...c, title: newTitle}: c)
+
+    return companyCopy;
+
 }

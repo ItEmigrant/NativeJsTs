@@ -1,7 +1,8 @@
 import {
-    addUserBook,
+    addCompany,
+    addUserBook, CompaniesType,
     makeHairStyle,
-    movedUser, movedUserHouse,
+    movedUser, movedUserHouse, removeUserBook, updateCompany, updateCompanyTitle, updateUserBook,
     upgradeUserLaptop,
     userType,
     userWithBooksType,
@@ -145,3 +146,150 @@ test("add book", () => {
 
 })
 
+test(" update book", () => {
+    let user: userWithLaptopType & userWithBooksType = {
+        name: "Bogdan",
+        hair: 32,
+        country: {
+            address: {
+                city: "Krakow",
+                house: 12
+            }
+
+        },
+        laptop: {
+            title: "Huawei"
+        },
+        books: ["Artur", "War", "H.Ford"]
+    };
+
+
+    const cutUser = updateUserBook(user, "H.Ford", "LIFE");
+
+    expect(user).not.toBe(cutUser);
+    expect(user.books).not.toBe(cutUser.books)
+    expect(cutUser.books[2]).toBe('LIFE')
+    expect(cutUser.books[0]).toBe('Artur')
+    expect(user.books[2]).toBe('H.Ford')
+
+
+})
+
+test(" remove book", () => {
+    let user: userWithLaptopType & userWithBooksType = {
+        name: "Bogdan",
+        hair: 32,
+        country: {
+            address: {
+                city: "Krakow",
+                house: 12
+            }
+
+        },
+        laptop: {
+            title: "Huawei"
+        },
+        books: ["Artur", "War", "H.Ford"]
+    };
+
+
+    const cutUser = removeUserBook(user, "War");
+
+    expect(user).not.toBe(cutUser);
+    expect(user.books).not.toBe(cutUser.books)
+    expect(cutUser.books[1]).toBe('H.Ford')
+    expect(cutUser.books.length).toBe(2)
+    expect(user.books.length).toBe(3)
+    expect(user.books[1]).toBe("War")
+
+})
+
+test(" user work in companies", () => {
+    let user: userWithLaptopType & CompaniesType = {
+        name: "Bogdan",
+        hair: 32,
+        country: {
+            address: {
+                city: "Krakow",
+                house: 12
+            }
+
+        },
+        laptop: {
+            title: "Huawei"
+        },
+        companies: [
+            {id: 1, title: "Apple"},
+            {id: 2, title: "Samsung"},
+            {id: 3, title: "Nokia"}
+        ]
+    };
+
+
+    const cutUser = addCompany(user, "Tesla");
+
+    expect(user).not.toBe(cutUser);
+    expect(user.companies).not.toBe(cutUser.companies)
+
+    expect(cutUser.companies.length).toBe(4)
+    expect(user.companies.length).toBe(3)
+    expect(cutUser.companies[3].title).toBe("Tesla")
+
+})
+
+test("update companies", () => {
+    let user: userWithLaptopType & CompaniesType = {
+        name: "Bogdan",
+        hair: 32,
+        country: {
+            address: {
+                city: "Krakow",
+                house: 12
+            }
+
+        },
+        laptop: {
+            title: "Huawei"
+        },
+        companies: [
+            {id: 1, title: "Apple"},
+            {id: 2, title: "Samsung"},
+            {id: 3, title: "Nokia"}
+        ]
+    };
+
+
+    const cutUser = updateCompany(user, 2, "BMW") as userType & CompaniesType;
+
+    expect(user).not.toBe(cutUser);
+    expect(user.companies).not.toBe(cutUser.companies)
+    expect(cutUser.companies.length).toBe(3)
+    expect(user.companies.length).toBe(3)
+    expect(cutUser.companies[1].title).toBe("BMW")
+    expect(user.companies[1].title).toBe("Samsung")
+
+})
+
+test("update company AA", () => {
+    let companies = {
+        "firm": [
+            {id: 1, title: "Apple"},
+            {id: 2, title: "Samsung"},
+            {id: 3, title: "Nokia"}
+        ],
+        "org": [
+            {id: 1, title: "AT club"},
+        ]
+    }
+
+    const cutUser = updateCompanyTitle(companies, "firm", 3, "Tesla");
+
+    expect(companies).not.toBe(cutUser);
+    expect(cutUser['org']).toBe(companies['org']);
+    expect(cutUser['firm'].length).toBe(3)
+    expect(companies.org.length).toBe(1)
+    expect(cutUser['firm'][2].title).toBe("Tesla")
+    expect(companies['firm'][2].title).toBe("Nokia")
+    expect(companies.org[0].title).toBe("AT club")
+
+})
