@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS Closure</title>
+</head>
+<script>
+    //global lexical environment {car: 1.undefined,  2.'bmw'}
+    let car //1
+    car = 'bmw' //2
+
+    function startCar() {
+        // local  lexical environment {go: 'Start'} tut jest sylka na global lexical environment
+        let go = 'Start'
+        return () => {
+            console.log(`${go} ${car}`)
+        }
+    }
+
+    startCar()();
+    let callBack = startCar();
+    callBack()
+
+</script>
+<body>
+
+</body>
+</html>

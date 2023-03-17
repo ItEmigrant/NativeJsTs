@@ -1,6 +1,6 @@
 import {
     addCompany,
-    addUserBook, CompaniesType,
+    addUserBook, CompaniesType, CompanyType,
     makeHairStyle,
     movedUser, movedUserHouse, removeUserBook, updateCompany, updateCompanyTitle, updateUserBook,
     upgradeUserLaptop,
@@ -282,13 +282,13 @@ test("update company AA", () => {
         ]
     }
 
-    const cutUser = updateCompanyTitle(companies, "firm", 3, "Tesla");
+    const copy = updateCompanyTitle(companies, "firm", 3, "Tesla") as {[key: string]: Array<CompanyType>    }
 
-    expect(companies).not.toBe(cutUser);
-    expect(cutUser['org']).toBe(companies['org']);
-    expect(cutUser['firm'].length).toBe(3)
+    expect(companies).not.toBe(copy);
+    expect(copy['org']).toBe(companies['org']);
+    expect(copy.firm.length).toBe(3)
     expect(companies.org.length).toBe(1)
-    expect(cutUser['firm'][2].title).toBe("Tesla")
+    expect(copy["firm"][2].title).toBe("Tesla")
     expect(companies['firm'][2].title).toBe("Nokia")
     expect(companies.org[0].title).toBe("AT club")
 
