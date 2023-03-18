@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS Closure1</title>
+</head>
+
+<script>
+
+    const print = (name) => {
+        console.log(`Hello, ${name}`)
+    }
+
+
+    const createPrint = (name) => () => {
+        return print(name)
+    }
+
+    setTimeout(createPrint('Artur'), 5000)
+
+    setTimeout(createPrint("Bogdan"), 3000)
+
+</script>
+<body>
+
+</body>
+</html>

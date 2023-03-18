@@ -21,6 +21,26 @@
     let callBack = startCar();
     callBack()
 
+    //example2
+
+    const createCounter = (value) => {
+        return {
+            increment() {
+                value++
+            },
+            getCounter() {
+                return value
+            }
+        }
+    }
+    const count1 = createCounter(3)
+    const count3 = createCounter(6)
+
+    count1.increment()
+    count1.increment()
+    count3.increment()
+    console.log(count1.getCounter())
+
 </script>
 <body>
 
