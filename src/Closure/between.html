@@ -20,6 +20,19 @@
     /*console.log(arr.filter((el) => {
         return (el >=3 && el <= 6)}))*/
 
+    const MakeCounter = ()=> {
+        let count = 5
+        return () => {
+            return  count++;
+        };
+
+    };
+    console.log(MakeCounter()()); //5
+
+    const Counter1 = MakeCounter()//5
+    console.log(Counter1())
+
+
 </script>
 <body>
 
