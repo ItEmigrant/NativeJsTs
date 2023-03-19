@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Example3</title>
+</head>
+<script>
+
+
+    const FuncA = (a) => (b) => (c) => (d) => console.log(a + b + c + d)
+
+    //Func1(1)(2)(3)(4)
+
+    const FuncB = FuncA(1)
+    const FuncC = FuncB(2)
+    const FuncD = FuncC(3)
+    FuncD(4)
+
+
+    const SUM = (a, b, c, d) => a + b + c + d
+
+    const SpaceWayCalc = (a,b,c) => (way)=>SUM(a, b, c, way)
+
+
+    //const MoonWay = (way) => SUM(10, 10, 10, way)
+  //  const TerraWay = (way) => SUM(10, 12, 40, way)
+
+    const MoonWay = SpaceWayCalc(10,10,10)
+
+    console.log(MoonWay(10))
+
+
+    MoonWay(11)
+    MoonWay(7)
+    MoonWay(6)
+
+
+</script>
+<body>
+
+</body>
+</html>

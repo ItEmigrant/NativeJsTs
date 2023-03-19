@@ -16,9 +16,20 @@
         return print(name)
     }
 
-    setTimeout(createPrint('Artur'), 5000)
+    setTimeout(createPrint('Artur'), 5000);
+    setTimeout(createPrint("Bogdan"), 3000);
 
-    setTimeout(createPrint("Bogdan"), 3000)
+
+    const outerFunction = (name) => ()=>{
+        let innerFunction = () => print(name);
+
+        return innerFunction()
+    }
+
+
+    setTimeout( outerFunction('Bogdan'), 2000)
+    setTimeout( outerFunction('Artur'), 4000)
+
 
 </script>
 <body>
