@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Between JS</title>
+</head>
+
+<script>
+    let arr = [1, 2, 3, 4, 5, 6, 7];
+    // console.log(arr.filter(inArray(1, 2, 10)));
+
+    const inBetween = (start, end) => {
+        return (el) => {
+            return el >= start && el <= end
+        }
+    }
+    console.log(arr.filter(inBetween(4, 5)));
+
+
+    /*console.log(arr.filter((el) => {
+        return (el >=3 && el <= 6)}))*/
+
+</script>
+<body>
+
+</body>
+</html>
