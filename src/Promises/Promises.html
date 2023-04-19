@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Promises</title>
+</head>
+<script>
+
+   /* const axios = {}*/
+
+    const findUserInDB = (id) => {
+        const user = {
+            1: {name: "Andre Ivanov", id: 1},
+            2: {name: "Alex Petrov", id: 24},
+            3: {name: "Bogdan Sol", id: 18}
+        }
+        return user[id]
+    }
+
+    /*  const promise1 = axios.get('https://google.com')
+      promise1
+          .then((data) => {
+          console.log(data)
+      })*/
+
+    const promise2 = findUserInDB(1)
+   console.log(promise2)
+    promise2
+        .then((user) => {
+        console.log(user)
+
+    })
+        .catch((error) => {
+            console.warn(error)
+
+        })
+        .finally(() => {
+            console.log('Finish')
+        })
+
+    /* axios.get('https://google.com')
+         .then((data) => {
+             console.log(data)
+         })
+
+     findUserInDB(1)
+         .then((user)=>{
+         console.log(user)
+     })*/
+
+
+</script>
+<body>
+
+</body>
+</html>
