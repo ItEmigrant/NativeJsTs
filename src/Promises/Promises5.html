@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Promises5</title>
+</head>
+<script>
+
+
+    const lastPromise = findUserInDB(1)
+        .then((user)=>{
+            console.log(user)
+            return user
+        })
+        .then(user=>findUserInDB(user.name))
+        .then(name1=>{
+            console.log(name1)
+            return name1
+        })
+        .then(name1=>findUserInDB(name1.name))
+        .then(name2=>console.log(name2.name))
+
+
+    async function run() {
+        let user = await findUserInDB(1)
+        console.log(user.name)
+        let name1 = await findUserInDB(user.name)
+        console.log(name1)
+        let name2 = await findUserInDB(name1.name)
+        console.log(name2)
+    }
+    run()
+
+</script>
+<body>
+
+</body>
+</html>

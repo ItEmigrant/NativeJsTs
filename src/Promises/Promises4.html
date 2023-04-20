@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Promises4</title>
+</head>
+<script>
+
+    findUserInDB(1)
+        .then(user => {
+            return user.name
+        })
+        .then(name => {
+            return Promise.resolve(name + 1)
+        })
+        .then((name) => {
+            console.log(name)
+        })
+
+</script>
+<body>
+
+</body>
+</html>
