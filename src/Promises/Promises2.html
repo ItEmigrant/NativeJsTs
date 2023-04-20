@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Promises 2 </title>
+</head>
+<script>
+    const resolvedPromise = Promise.resolve([{}])
+        resolvedPromise.then(data => console.log(data))
+        .catch(error => console.warn(error))
+
+
+   /* const rejectedPromise = Promise.reject([{message: "Some error"}])
+
+
+    rejectedPromise.then(data => console.log(data))
+        .catch(error => console.warn(error))
+*/
+
+    const userAPI = {
+        getAllUsers() {
+            return Promise.resolve([{name: 'D'}, {name: 'BBB'}])
+        },
+        login(login, password) {
+            if (login !== "123" && password !== "123") {
+                return Promise.reject({message: "Incorrect Value"})
+            } else {
+                return Promise.resolve({name: 'D', id: 12, avatarURL: ""})
+            }
+        }
+    }
+
+   const pr = userAPI.getAllUsers()
+    pr.then(user=> console.log(user))
+
+    userAPI.login("123", '333')
+        .then((data)=>{
+            //make redirect
+        })
+        .catch(error=>{
+            // show error
+    })
+
+</script>
+<body>
+
+</body>
+</html>
