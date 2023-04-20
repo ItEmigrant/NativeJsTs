@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Promises3</title>
+</head>
+<script>
+
+
+    /* //long declaration
+     const promise2 = findUserInDB(1)
+     const promise2_2 = promise2.then((user) => {
+         user.name
+     })
+     promise2_2.then(name => console.log(name))
+
+
+     //short declaration
+     findUserInDB(1)
+         .then(user => user.name)
+         .then(name => console.log(name))*/
+
+
+    const makeGoogleRequest = () => {
+        //const pr = axios.get('https://google.com')
+        //const pr2 = pr.then(res => res.data)
+        //return pr2;
+
+        return axios.get('https://google.com')
+            .then(res => res.data)
+
+    }
+
+    makeGoogleRequest()
+        .then(data => console.log(data))
+
+</script>
+<body>
+
+</body>
+</html>
