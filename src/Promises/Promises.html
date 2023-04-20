@@ -6,7 +6,7 @@
 </head>
 <script>
 
-   /* const axios = {}*/
+    /* const axios = {}*/
 
     const findUserInDB = (id) => {
         const user = {
@@ -17,25 +17,34 @@
         return user[id]
     }
 
-    /*  const promise1 = axios.get('https://google.com')
-      promise1
-          .then((data) => {
-          console.log(data)
-      })*/
+  /*  const promise1 = axios.get('https://google.com')
+    promise1
+        .then((data) => {
+            console.log(data)
+        })*/
 
     const promise2 = findUserInDB(1)
-   console.log(promise2)
+    console.log(promise2)
     promise2
         .then((user) => {
-        console.log(user)
+            console.log(user)
 
-    })
+        })
         .catch((error) => {
             console.warn(error)
 
         })
-        .finally(() => {
-            console.log('Finish')
+    /*.finally(() => {
+        console.log('Finish')
+    })*/
+
+    const otherPromise = Promise.all([/*promise1,*/ promise2])
+    otherPromise.then((results) => {
+        console.log(results)
+    })
+
+        .catch(()=>{
+            console.log('try latter')
         })
 
     /* axios.get('https://google.com')
@@ -48,6 +57,23 @@
          console.log(user)
      })*/
 
+   /* const otherPromise = Promise.allSettled([promise1, promise2])
+    otherPromise.then((results) => {
+        console.log(results)
+
+
+    const dataFromGoogle =
+        results[0].status = 'fulfilled'
+           ? results[0].value
+            : {data: {name:null}}
+
+        const userFromDB =
+            results[1].status = "fulfilled"
+        ? results[1].value :
+                {name: results[1].reason}
+
+        console.log(dataFromGoogle, userFromDB)
+    })*/
 
 </script>
 <body>
