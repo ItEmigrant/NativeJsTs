@@ -6,16 +6,62 @@
 </head>
 <script>
 
-    findUserInDB(1)
-        .then(user => {
-            return user.name
+    /*  findUserInDB(1).then(user=>{
+          console.log(user.name)
+      })*/
+    function getNumber() {
+        // const promise = Promise.resolve(Math.random())
+
+        const promise = new Promise((resolve, reject) => {
+
+            setTimeout(() => {
+                resolve(Math.random())
+            }, 3000)
+
         })
-        .then(name => {
-            return Promise.resolve(name + 1)
-        })
-        .then((name) => {
-            console.log(name)
-        })
+        return promise
+    }
+
+    //getNumber().then(n => console.log(n))
+
+    // getNumber().then(n => console.log(n))
+
+
+    const repo = {
+        save(data) {
+
+            try {
+                localStorage.setItem('sk', JSON.stringify(data))
+            } catch (error) {
+                return false
+            }
+
+            return true
+        },
+
+        saveAsync(data) {
+            const promise = new Promise((resolve, reject) => {
+                try {
+                    localStorage.setItem('sk', JSON.stringify(data))
+                    resolve()
+                } catch (error) {
+                    reject(error)
+                }
+            })
+            return promise
+        }
+
+    }
+
+
+    const result = repo.save({name: 'itEmigrant'})
+    if (result) {
+        console.log('Saved')
+    } else console.warn('Not saved')
+
+    const promise = repo.saveAsync({name: 'itEmigrant'})
+    promise.then()
+
 
 </script>
 <body>
