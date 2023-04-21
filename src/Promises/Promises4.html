@@ -49,20 +49,37 @@
                 }
             })
             return promise
+        },
+        read() {
+            return new Promise((resolve, reject) => {
+                const data = localStorage.getItem('sk');
+                if (!data) {
+                    reject(null)
+                } else
+                    resolve(JSON.parse(data))
+            })
         }
 
     }
 
+   /* repo.read().then((data) => {
+        console.log(data)
+    })*/
 
     const result = repo.save({name: 'itEmigrant'})
     if (result) {
         console.log('Saved')
     } else console.warn('Not saved')
 
-    const promise = repo.saveAsync({name: 'itEmigrant'})
-    promise.then()
 
+    const run = async () => {
+        await repo.saveAsync({name: 'itEmigrant'})
+        console.log('SAVED')
 
+        let data= await repo.read()
+        console.log(data)
+    }
+    run()
 </script>
 <body>
 
