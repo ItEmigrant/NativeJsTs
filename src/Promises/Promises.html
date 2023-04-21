@@ -6,22 +6,75 @@
 </head>
 <script>
 
-    /* const axios = {}*/
+    const axios = {
+        _fake(url, data) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    let responseData = {
+                        taxt: `${url} love you`
+                    };
+                    if (url.indexOf('it-kamasutra') > 0) {
+                        responseData = {
+                            resCount: data.count,
+                            message: 'we prepare students for you'
+                        }
+                    } else if ((url.indexOf('google') > 0)) {
+                        responseData = {
+                            vacancies: 12
+                        }
+                    } else if ((url.indexOf('google') > 0)) {
+                        responseData = {
+                            vacancies: 21
+                        }
+                    }
+                    resolve({
+                        request: {},
+                        status: 200,
+                        headers: {},
+                        config: responseData
+                    })
 
-    export const findUserInDB = (id) => {
-        const user = {
-            1: {name: "Andre Ivanov", id: 1},
-            2: {name: "Alex Petrov", id: 24},
-            3: {name: "Bogdan Sol", id: 18}
+                }, randomIntFromInterval(1, 5) * 1000)
+            })
+        },
+
+        post(url, data) {
+            return this._fake(url, data)
+        },
+
+        get(url, data) {
+            return this._fake(url, data)
         }
-        return user[id]
     }
 
-  /*  const promise1 = axios.get('https://google.com')
-    promise1
-        .then((data) => {
-            console.log(data)
-        })*/
+    const findUserInDB = (id) => {
+        const users = [
+            {id: 1, name: "Bogdan", friend: 3},
+            {id: 2, name: "Artur", friend: 1},
+            {id: 3, name: "Sasha", friend: 2}
+        ]
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                let user = users.find(u => u.id === id);
+                if (user == null) {
+                    reject('user not found')
+                } else {
+                    resolve(user)
+                }
+            }, randomIntFromInterval(500, 1500))
+        })
+    }
+
+    function randomIntFromInterval(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min)
+    }
+
+
+    /*  const promise1 = axios.get('https://google.com')
+      promise1
+          .then((data) => {
+              console.log(data)
+          })*/
 
     const promise2 = findUserInDB(1)
     console.log(promise2)
@@ -38,14 +91,14 @@
         console.log('Finish')
     })*/
 
-    const otherPromise = Promise.all([/*promise1,*/ promise2])
-    otherPromise.then((results) => {
-        console.log(results)
-    })
+    /* const otherPromise = Promise.all([/!*promise1,*!/ promise2])
+     otherPromise.then((results) => {
+         console.log(results)
+     })*/
 
-        .catch(()=>{
-            console.log('try latter')
-        })
+    /*   .catch(()=>{
+           console.log('try latter')
+       })*/
 
     /* axios.get('https://google.com')
          .then((data) => {
@@ -57,23 +110,23 @@
          console.log(user)
      })*/
 
-   /* const otherPromise = Promise.allSettled([promise1, promise2])
-    otherPromise.then((results) => {
-        console.log(results)
+    /* const otherPromise = Promise.allSettled([promise1, promise2])
+     otherPromise.then((results) => {
+         console.log(results)
 
 
-    const dataFromGoogle =
-        results[0].status = 'fulfilled'
-           ? results[0].value
-            : {data: {name:null}}
+     const dataFromGoogle =
+         results[0].status = 'fulfilled'
+            ? results[0].value
+             : {data: {name:null}}
 
-        const userFromDB =
-            results[1].status = "fulfilled"
-        ? results[1].value :
-                {name: results[1].reason}
+         const userFromDB =
+             results[1].status = "fulfilled"
+         ? results[1].value :
+                 {name: results[1].reason}
 
-        console.log(dataFromGoogle, userFromDB)
-    })*/
+         console.log(dataFromGoogle, userFromDB)
+     })*/
 
 </script>
 <body>
