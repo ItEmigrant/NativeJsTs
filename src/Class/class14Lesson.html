@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<script>
+    const obj1 = createTypicalObject('JS',false)
+    const obj2 = createTypicalObject('CSS', true)
+
+    function createTypicalObject(title, isBusy) {
+        const o = {
+            title: title,
+            isBusy: isBusy,
+            sayHello() {
+                console.log(this.title + ' , hello')
+            }
+
+        }
+        return o
+    }
+    console.log(obj2)
+    console.log(obj1)
+
+    class SomeObject {
+        constructor(title, isBusy) {
+                this.title= title,
+                this.isBusy= isBusy
+        }
+        sayHello() {
+            console.log(this.title + ' , hello')
+        }
+
+    }
+    const obj3 = new SomeObject('JS',false)
+    const obj4 = new SomeObject('CSS', true)
+    console.log(obj3)
+
+</script>
