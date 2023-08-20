@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <script>
-    const obj1 = createTypicalObject('JS', false)
+  /*  const obj1 = createTypicalObject('JS', false)
     const obj2 = createTypicalObject('CSS', true)
 
     function createTypicalObject(title, isBusy) {
@@ -18,32 +18,38 @@
     }
 
     console.log(obj2)
-    console.log(obj1)
+    console.log(obj1)*/
 
-    class SomeObject {
+    class Wallet {
         #title
+
         constructor(title, isBusy) {
             this.#title = title,
                 this.isBusy = isBusy
         }
+
         sayHello() {
             console.log(this.#title + ' , hello')
         }
 
         setTitle(newTitle) {
-            this.#title = newTitle
+            const avaCurrent = ['JS', 'CSS', 'REDUX', 'REACT']
+            if (!avaCurrent.includes(newTitle)) throw new Error('Bad Title')
+            this.#title = newTitle;
         }
+
         getTitle() {
-            return this.#title
+            return this.#title.toLowerCase()
         }
     }
 
-    const obj3 = new SomeObject('JS', false)
-    const obj4 = new SomeObject('CSS', true)
+    const wallet = new Wallet('JS', false)
 
 
-    obj3.setTitle('React')
-    console.log(obj3)
-    console.log(obj3.getTitle() )
+    wallet.setTitle('REACT')
+    console.log(wallet)
+    console.log(wallet.getTitle())
+
+
 
 </script>
