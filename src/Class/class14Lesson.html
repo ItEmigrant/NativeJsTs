@@ -1,29 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <script>
-    /*  const obj1 = createTypicalObject('JS', false)
-      const obj2 = createTypicalObject('CSS', true)
-      function createTypicalObject(title, isBusy) {
-          const o = {
-              title: title,
-              isBusy: isBusy,
-              sayHello() {
-                  console.log(this.title + ' , hello')
-              }
-
-          }
-          return o
-      }
-
-      console.log(obj2)
-      console.log(obj1)*/
 
     class Wallet {
-        #title
+        #title;
+        #isBusy;
 
         constructor(title, isBusy) {
             this.#title = title,
-                this.isBusy = isBusy
+                this.#isBusy = isBusy
         }
 
         sayHello() {
@@ -31,10 +16,24 @@
         }
 
         setTitle(newTitle) {
-            if (!Wallet.avaCurrent.includes(newTitle)) throw new Error('Bad Title')
+            Wallet.ValidateTitle(newTitle)
             this.#title = newTitle;
         }
+
+        setIsBusy(value) {
+            this.#isBusy = value;
+        }
+
+        getIsBusy() {
+            return this.#isBusy
+        }
+
         static avaCurrent = ['JS', 'CSS', 'REDUX', 'REACT']
+
+        static ValidateTitle(newTitle) {
+            if (!Wallet.avaCurrent.includes(newTitle)) throw new Error('Bad Title')
+        }
+
         getTitle() {
             return this.#title.toLowerCase()
         }
@@ -52,6 +51,8 @@
     wallet.setTitle('REACT')
     console.log(wallet)
     console.log(wallet.getTitle())
+    wallet.setIsBusy(true)
+    console.log(wallet.getIsBusy())
 
 
 </script>
