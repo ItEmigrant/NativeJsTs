@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <script>
-  /*  const obj1 = createTypicalObject('JS', false)
-    const obj2 = createTypicalObject('CSS', true)
+    /*  const obj1 = createTypicalObject('JS', false)
+      const obj2 = createTypicalObject('CSS', true)
+      function createTypicalObject(title, isBusy) {
+          const o = {
+              title: title,
+              isBusy: isBusy,
+              sayHello() {
+                  console.log(this.title + ' , hello')
+              }
 
-    function createTypicalObject(title, isBusy) {
+          }
+          return o
+      }
 
-        const o = {
-            title: title,
-            isBusy: isBusy,
-            sayHello() {
-                console.log(this.title + ' , hello')
-            }
-
-        }
-        return o
-    }
-
-    console.log(obj2)
-    console.log(obj1)*/
+      console.log(obj2)
+      console.log(obj1)*/
 
     class Wallet {
         #title
@@ -33,23 +31,27 @@
         }
 
         setTitle(newTitle) {
-            const avaCurrent = ['JS', 'CSS', 'REDUX', 'REACT']
-            if (!avaCurrent.includes(newTitle)) throw new Error('Bad Title')
+            if (!Wallet.avaCurrent.includes(newTitle)) throw new Error('Bad Title')
             this.#title = newTitle;
         }
-
+        static avaCurrent = ['JS', 'CSS', 'REDUX', 'REACT']
         getTitle() {
             return this.#title.toLowerCase()
         }
+
+        static createUSD(isBusy) {
+            return new Wallet('HTML', isBusy)
+        }
     }
 
+    const obj1 = Wallet.createUSD(false)
+    console.log(obj1)
     const wallet = new Wallet('JS', false)
 
 
     wallet.setTitle('REACT')
     console.log(wallet)
     console.log(wallet.getTitle())
-
 
 
 </script>
