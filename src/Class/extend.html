@@ -18,15 +18,16 @@
             console.log(this.#title + ' , hello')
         }
 
-         setTitle(newTitle) {
-             Wallet.ValidateTitle(newTitle)
-             this.#title = newTitle;
-         }
-         setIsBusy(value) {
-             this.#isBusy = value;
-         }
+        setTitle(newTitle) {
+            Wallet.ValidateTitle(newTitle)
+            this.#title = newTitle;
+        }
 
-        getIsBusy() {
+        setIsBusy(value) {
+            this.#isBusy = value;
+        }
+
+        get isBusy() {
             return this.#isBusy
         }
 
@@ -38,6 +39,7 @@
             if (this.#ownerStatus === 'VIP') return;
             if (!Wallet.avaCurrent.includes(newTitle)) throw new Error('Bad Title')
         }
+
         validateIsBusy(isBusy) {
             this.#isBusy = isBusy
         }
@@ -45,7 +47,7 @@
         update(dto) {
             this.validateTitle(dto.title);
             this.validateIsBusy(dto.isBusy);
-            this.ovnerStatus(dto.ownerStatus);
+            this.ownerStatus(dto.ownerStatus);
 
             this.#isBusy = dto.isBusy;
             this.#title = dto.title;
@@ -58,21 +60,47 @@
         static createUSD(isBusy) {
             return new Wallet('REDUX', isBusy)
         }
+
+        print() {
+            console.log(this.title)
+        }
+
     }
-    class WalletWithBalance extends Wallet{
-        constructor(title = "REACT", isBusy = true, balance=0) {
+
+    class WalletWithBalance extends Wallet {
+        constructor(title = "REACT", isBusy = true, balance = 0) {
             super(title, isBusy);
             this.balance = balance
         }
+
         print() {
-            console.log(this.balance, this.title)
+            console.log(this.title, this.balance)
         }
+
     }
 
-    const obj1 = new WalletWithBalance('REDUX', true, 10)
+    class WalletVIP extends WalletWithBalance {
+        constructor(title = "REACT", isBusy = true, balance = 0) {
+            super(title, isBusy, balance);
+            this.limite = 1000000
+        }
 
-    console.log(obj1.balance)
-    console.log(obj1.title)
-    obj1.print()
+        print() {
+            console.log(this.title, this.balance, this.limite)
+        }
+
+    }
+
+    const wallets = [
+        new Wallet('JS', true),
+        new WalletWithBalance('REDUX', false, 888),
+        new WalletVIP('REACT', false, 99999)
+    ];
+
+    wallets.forEach((w) => {
+        w.print()
+        console.log(w.title + '!!!!')
+    })
+
 
 </script>
