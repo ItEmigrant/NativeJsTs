@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<script>
+    class Wallet {
+        #title;
+        #isBusy;
+        #ownerStatus;
+
+        constructor(title = "React", isBusy = true) {
+            this.validateTitle(title)
+            this.#title = title
+            this.#isBusy = isBusy
+            this.#ownerStatus = 'Default'
+            this.balance = 0
+        }
+
+        sayHello() {
+            console.log(this.#title + ' , hello')
+        }
+
+         setTitle(newTitle) {
+             Wallet.ValidateTitle(newTitle)
+             this.#title = newTitle;
+         }
+         setIsBusy(value) {
+             this.#isBusy = value;
+         }
+
+        getIsBusy() {
+            return this.#isBusy
+        }
+
+        get title() {
+            return this.#title.toLowerCase()
+        }
+
+        validateTitle(newTitle) {
+            if (this.#ownerStatus === 'VIP') return;
+            if (!Wallet.avaCurrent.includes(newTitle)) throw new Error('Bad Title')
+        }
+        validateIsBusy(isBusy) {
+            this.#isBusy = isBusy
+        }
+
+        update(dto) {
+            this.validateTitle(dto.title);
+            this.validateIsBusy(dto.isBusy);
+            this.ovnerStatus(dto.ownerStatus);
+
+            this.#isBusy = dto.isBusy;
+            this.#title = dto.title;
+            this.#ownerStatus = dto.ownerStatus
+        }
+
+
+        static avaCurrent = ['JS', 'CSS', 'REDUX', 'REACT']
+
+        static createUSD(isBusy) {
+            return new Wallet('REDUX', isBusy)
+        }
+    }
+    class WalletWithBalance extends Wallet{
+        constructor(title = "REACT", isBusy = true, balance=0) {
+            super(title, isBusy);
+            this.balance = balance
+        }
+        print() {
+            console.log(this.balance, this.title)
+        }
+    }
+
+    const obj1 = new WalletWithBalance('REDUX', true, 10)
+
+    console.log(obj1.balance)
+    console.log(obj1.title)
+    obj1.print()
+
+</script>
