@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>Prototype</title>
+<script>
+    class User {
+        constructor(name) {
+            this.name = name;
+            this.state = {};
+            this.someMethod = function () {
+            }
+        }
+
+        render() {
+            return 'I am user' + this.name
+        }
+    }
+
+    const user1 = new User('Bogus')
+    const user2 = new User('Luda')
+    console.log(user1, user2)
+</script>
