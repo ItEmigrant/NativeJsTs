@@ -18,5 +18,12 @@
 
     const user1 = new User('Bogus')
     const user2 = new User('Luda')
-    console.log(user1, user2)
+    console.log(user1, user2);
+
+    let a = class {}
+    console.log(a.__proto__===Function.prototype) //true
+    console.log(Number.__proto__===Function.prototype)//true
+    let b = Promise.resolve(10)
+    console.log( b.__proto__ === Promise.prototype)//true
+
 </script>

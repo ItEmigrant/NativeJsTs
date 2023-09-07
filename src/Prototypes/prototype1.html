@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<script>
+    function User(name) {
+        this.name = name;
+        this.state = {};
+        this.someMethod = function () {
+        } //bad option
+    }
+
+    User.prototype.render = function () {
+        return 'I am user  ' + this.name
+    }
+    const u1 = new User('xxx')
+    console.log(u1)
+    console.log(u1.render())
+
+    //example
+    function foo() {
+    }
+
+    console.log(foo.__proto__.__proto__===Object.prototype) //true=>
+    //foo.__proto__ === Function.prototype
+    console.log(Function.prototype.__proto__===Object.prototype)//true<=
+
+</script>
