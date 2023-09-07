@@ -19,8 +19,13 @@
     function foo() {
     }
 
-    console.log(foo.__proto__.__proto__===Object.prototype) //true=>
+    let Arr1 = [];
+
+    Arr1.push(); //=> Arr1.__proto__===Array.prototype => we have method .push()
+
+
+    console.log(foo.__proto__.__proto__ === Object.prototype) //true=>
     //foo.__proto__ === Function.prototype
-    console.log(Function.prototype.__proto__===Object.prototype)//true<=
+    console.log(Function.prototype.__proto__ === Object.prototype)//true<=
 
 </script>
