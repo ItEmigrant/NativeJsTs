@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<script>
+    let Pr = new Promise((res)=>res('Oleg'))
+
+    console.log(Pr.then(value => value))
+    console.log(Pr.then(value => value))
+
+   Promise.all([Promise.resolve(3), Promise.resolve(5)])
+        .then((res)=> {
+              console.log(res)
+        }
+           )
+
+</script>
+
