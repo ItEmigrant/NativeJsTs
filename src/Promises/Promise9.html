@@ -1,29 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <script>
-    let Pr = new Promise((res)=>res('Oleg'))
+    let Pr = new Promise((res) => res('Oleg'))
 
-   /* console.log(Pr.then(value => value))
-    console.log(Pr.then(value => value))*/
+    /* console.log(Pr.then(value => value))
+     console.log(Pr.then(value => value))*/
 
-   Promise.all([Promise.resolve(3), Promise.resolve(5)])
-        .then((res)=> {
-             /* console.log(res[0])
-              console.log(res[1])*/
-        }
-           )
+    Promise.all([Promise.resolve(3), Promise.resolve(5)])
+        .then((res) => {
+                /* console.log(res[0])
+                 console.log(res[1])*/
+            }
+        )
 
-    let Pr1 = new Promise((resolve,reject)=> {
+    let Pr1 = new Promise((resolve, reject) => {
         reject('Oleg')
     })
-       Pr1.then(()=>{
-            console.log(1)
+    Pr1.then(() => {
+        console.log(1)
+    })
+        .catch(() => {
+            console.log(2)
         })
-        .catch(()=>{console.log(2)})
-        .catch(()=>{console.log(3)})
-        .then(()=>{
+        .catch(() => {
+            console.log(3)
+        })
+        .then(() => {
             console.log(4)
-        })
+        });
+
+    async function yo() {
+        return 5
+    }
+
+    let a = yo();
+    console.log(a);
+    /*  axios.get('https://nl.com/12')
+          .then(user=>axios.get('https://nl.com/13' + user.account))
+          .then(money=>console.log(money))*/
+
+    let pr1 = new Promise((res) => res('21'))
+    pr1
+        .then(res => Promise.resolve(2))
+        .then(res => Promise.resolve(res + 2))
+        .then(res => Promise.resolve(res - 1))
+        .then(res => res + 2)
+        .then(res => console.log(res)) //5
+
+
+    new Promise((resolve, reject) => {
+        reject('Oleg')
+    })
+        .then(res=>console.log(res))
+        .catch(rej=>console.log(rej))
+
+    window.addEventListener("unhandledrejection", (err)=>{
+        console.log(err) //to show all errors in console whet we did not to catch error
+    })
+
 
 </script>
 
