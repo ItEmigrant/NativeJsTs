@@ -1,5 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <script>
+// PATTERN SUBSCRIBER
+    const store = {
+        subscribes: [],
+        dispatch(action) {
+            this.reducers.forEach(r=>action(r));
+            //change State
+            this.subscribes.forEach(s=>s())
+        },
+        subscribe(subscriber){
+            this._subscribes.push(subscriber)
+        }
+    }
+
 
 </script>
