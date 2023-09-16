@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<script>
+    const EventEmitter = require('events');
+    const eventEmitter = new EventEmitter();
+
+    eventEmitter.emit('money-end', {currentBalance: -10, date: new Date()});
+
+    eventEmitter.on('money-end', (data)=>{
+        console.log(data)
+    } )
+</script>

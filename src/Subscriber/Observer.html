@@ -1,18 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <script>
-// PATTERN SUBSCRIBER
+    // PATTERN SUBSCRIBER
     const store = {
         subscribes: [],
         dispatch(action) {
-            this.reducers.forEach(r=>action(r));
+            this.reducers.forEach(r => action(r));
             //change State
-            this.subscribes.forEach(s=>s())
+            this.subscribes.forEach(s => s())
         },
-        subscribe(subscriber){
-            this._subscribes.push(subscriber)
-        }
-    }
+        subscribe(subscriber: ()=>void) {
+            this._subscribes.push(subscriber);
+
+            return () => {
+                this._subscribes = this._subscribes.filter(s=>s!== subscriber)
+            }
+
+        },
+      /*  unsubscribe(subscriber: ()=>void) {
+            this._subscribes = this._subscribes.filter(s=>s!== subscriber)
+        }*/
+    };
 
 
 </script>
