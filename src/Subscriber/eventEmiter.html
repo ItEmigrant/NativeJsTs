@@ -1,12 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <script>
+    /*   const EventEmitter = require('events');
+       const eventEmitter = new EventEmitter();
+
+       eventEmitter.emit('money-end', {currentBalance: -10, date: new Date()});
+
+       eventEmitter.on('money-end', (data)=>{
+           console.log(data)
+       } )*/
+
     const EventEmitter = require('events');
     const eventEmitter = new EventEmitter();
+    class Store extends EventEmitter {
+        constructor() {
+            super()
+            this.state = {counter: 1};
+        }
 
-    eventEmitter.emit('money-end', {currentBalance: -10, date: new Date()});
+        increase() {
+            this.state.counter++;
+            this.emit('state changed')
+        }
 
-    eventEmitter.on('money-end', (data)=>{
-        console.log(data)
-    } )
+        decrease() {
+            this.state.counter--;
+            this.emit('state changed')
+        }
+
+        getState() {
+            return this.state
+        }
+        subscribe(callback){
+            this.on('state changed', callback )
+        }
+
+    }
+
+    const store = new Store();
+
+    store.subscribe(() => console.log(store.getState()));
+    store.increase();
+
 </script>

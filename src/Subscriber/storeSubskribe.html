@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<script>
+
+    class Store  {
+        constructor() {
+            this._emitter= new EventEmitter()
+            this.state = {counter: 1};
+        }
+
+        increase() {
+            this.state.counter++;
+            this._emitter.emit('state changed')
+
+        }
+
+        decrease() {
+            this.state.counter--;
+            this._emitter.emit('state changed')
+
+        }
+
+        getState() {
+            return this.state
+        }
+        subscribe(callback){
+            this._emitter.on('state changed', callback )
+        }
+
+    }
+
+    const store = new Store();
+
+    store.subscribe(() => console.log(store.getState()));
+    store.increase();
+</script>
