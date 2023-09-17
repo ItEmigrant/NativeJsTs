@@ -2,29 +2,30 @@
 <html lang="en">
 <script>
 
-    class Store  {
+
+    const eventEmitter = new EventTarget();
+
+    eventEmitter.addEventListener('state Change', (detail)=>console.log(detail))
+    eventEmitter.dispatchEvent(new Event('state Change', {detail:{title:'state Change'}}))
+
+    class Store  extends EventTarget{
         constructor() {
-            this._emitter= new EventEmitter()
+            super()
             this.state = {counter: 1};
         }
-
         increase() {
             this.state.counter++;
-            this._emitter.emit('state changed')
-
         }
 
         decrease() {
             this.state.counter--;
-            this._emitter.emit('state changed')
-
         }
 
         getState() {
             return this.state
         }
         subscribe(callback){
-            this._emitter.on('state changed', callback )
+
         }
 
     }
