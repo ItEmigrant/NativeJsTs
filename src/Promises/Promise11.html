@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<script>
+    let fetch = (url) => {
+        return new Promise((resolve, reject) => {
+            switch (url) {
+                case 'google': {
+                    setTimeout(() => {
+                        resolve({data: 'from google'})
+                    }, 3000)
+                    break;
+                }
+                case 'tesla': {
+                    setTimeout(() => {
+                        resolve({data: 'from tesla'})
+                    }, 2000)
+                    break;
+                }
+                case 'it-emigrant': {
+                    setTimeout(() => {
+                        resolve({data: 'from it emigrant'})
+                    }, 500)
+                    break;
+                }
+                default: {
+                    setTimeout(() => {
+                        resolve({data: 'xxx'})
+                    }, 4000)
+
+                }
+
+            }
+        });
+
+    }
+
+    fetch('google').then((data) => {
+        console.log(data);
+        return fetch('tesla');
+    })
+        .then((data1) => {
+            console.log(data1)
+            return fetch('it-emigrant')
+        })
+        .then(data2 => console.log(data2))
+
+
+</script>
