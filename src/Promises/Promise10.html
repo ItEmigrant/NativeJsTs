@@ -4,18 +4,32 @@
     // let a= {}; // new Object();
     let axios = {
         get() {
-           let pr = new Promise((resolve, reject) => {
+            return new Promise((resolve) => {
                 setInterval(() => {
-                    reject('Hello Bro!');
+                    resolve({
+                        n: 'Bob',
+                        w: 'dev',
+                        message: 'Hello Bob dev'
+                    });
                 }, 3000)
-
-            });
-           return pr;
+            })
         }
-
     }
+    /* axios.get()
+         .then()
+         .then(() => { console.log(1)
+         })
+         .then(() => { console.log(2)
+         })
+         .catch((err) => {
+             console.error(err)
+         })*/
+
     axios.get()
-        .then(data=>console.log(data))
-        .catch((err)=>{console.error(err)})
+        .then((message) => {return message.message})
+        .then((message2) => {console.log(message2)
+        })
+
+
 
 </script>
