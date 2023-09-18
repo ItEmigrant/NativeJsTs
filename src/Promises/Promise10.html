@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<script>
+    // let a= {}; // new Object();
+    let axios = {
+        get() {
+           let pr = new Promise((resolve, reject) => {
+                setInterval(() => {
+                    reject('Hello Bro!');
+                }, 3000)
+
+            });
+           return pr;
+        }
+
+    }
+    axios.get()
+        .then(data=>console.log(data))
+        .catch((err)=>{console.error(err)})
+
+</script>
