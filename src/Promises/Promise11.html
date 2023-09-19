@@ -34,15 +34,36 @@
 
     }
 
-    fetch('google').then((data) => {
-        console.log(data);
-        return fetch('tesla');
-    })
-        .then((data1) => {
-            console.log(data1)
-            return fetch('it-emigrant')
-        })
-        .then(data2 => console.log(data2))
+    /* fetch('google')
+         .then((data) => {
+             console.log(data);
+             return fetch('tesla');
+         })
+         .then((data1) => {
+             console.log(data1)
+             return fetch('it-emigrant')
+         })
+         .then(data2 => console.log(data2));*/
 
+    /* let makeRequest = async () => {
+         let data = await fetch('google');
+         console.log(data)
+         data = await fetch('tesla');
+         console.log(data)
+         data = await fetch('it-emigrant');
+         console.log(data)
+     }
+     makeRequest()*/
+
+    let makeRequestAll = async () => {
+        let promises = [
+            fetch('google'),
+            fetch('tesla'),
+            fetch('it-emigrant')
+        ];
+        let data = await Promise.all(promises)
+        data.map(e => console.log(e))
+    }
+    makeRequestAll()
 
 </script>
